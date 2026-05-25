@@ -19,7 +19,7 @@ function Login() {
             const response =
                 await axios.post(
 
-                    "http://127.0.0.1:8000/api/token/",
+                    "https://esg-platform-tno6.onrender.com/api/token/",
 
                     {
                         username,
@@ -32,11 +32,15 @@ function Login() {
                 response.data.access
             );
 
-            window.location.reload();
+            window.location.href = "/";
 
         } catch (error) {
 
-            alert("Invalid credentials");
+            console.log(error);
+
+            alert(
+                "Invalid username or password"
+            );
         }
     };
 
@@ -55,7 +59,9 @@ function Login() {
                     type="text"
                     placeholder="Username"
                     onChange={(e) =>
-                        setUsername(e.target.value)
+                        setUsername(
+                            e.target.value
+                        )
                     }
                 />
 
@@ -64,7 +70,9 @@ function Login() {
                     type="password"
                     placeholder="Password"
                     onChange={(e) =>
-                        setPassword(e.target.value)
+                        setPassword(
+                            e.target.value
+                        )
                     }
                 />
 

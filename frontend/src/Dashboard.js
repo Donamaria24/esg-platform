@@ -6,8 +6,11 @@ import "./Dashboard.css";
 
 function Dashboard() {
 
-    const [summary, setSummary] = useState({});
-    const [file, setFile] = useState(null);
+    const [summary, setSummary] =
+        useState({});
+
+    const [file, setFile] =
+        useState(null);
 
     useEffect(() => {
 
@@ -15,26 +18,29 @@ function Dashboard() {
 
     }, []);
 
-    // FETCH SUMMARY DATA
+    // FETCH DASHBOARD DATA
 
     const fetchSummary = async () => {
 
         try {
 
             const token =
-                localStorage.getItem("access");
+                localStorage.getItem(
+                    "access"
+                );
 
-            const response = await axios.get(
+            const response =
+                await axios.get(
 
-                "http://127.0.0.1:8000/api/emissions/summary/",
+                    "https://esg-platform-tno6.onrender.com/api/emissions/summary/",
 
-                {
-                    headers: {
-                        Authorization:
-                            `Bearer ${token}`
+                    {
+                        headers: {
+                            Authorization:
+                                `Bearer ${token}`
+                        }
                     }
-                }
-            );
+                );
 
             setSummary(response.data);
 
@@ -50,20 +56,25 @@ function Dashboard() {
 
         if (!file) {
 
-            alert("Please choose CSV file");
+            alert(
+                "Please select CSV file"
+            );
 
             return;
         }
 
         const formData = new FormData();
 
-        formData.append("file", file);
+        formData.append(
+            "file",
+            file
+        );
 
         try {
 
             await axios.post(
 
-                "http://127.0.0.1:8000/api/upload/sap/",
+                "https://esg-platform-tno6.onrender.com/api/upload/sap/",
 
                 formData,
 
@@ -75,7 +86,9 @@ function Dashboard() {
                 }
             );
 
-            alert("CSV Uploaded Successfully");
+            alert(
+                "CSV uploaded successfully"
+            );
 
             fetchSummary();
 
@@ -83,16 +96,19 @@ function Dashboard() {
 
             console.log(error);
 
-            alert("Upload Failed");
+            alert(
+                "Upload failed"
+            );
         }
     };
 
-    // PDF DOWNLOAD
+    // PDF EXPORT
 
     const downloadPDF = () => {
 
         window.open(
-            "http://127.0.0.1:8000/api/emissions/export/pdf/"
+
+            "https://esg-platform-tno6.onrender.com/api/emissions/export/pdf/"
         );
     };
 
@@ -100,7 +116,9 @@ function Dashboard() {
 
     const logout = () => {
 
-        localStorage.removeItem("access");
+        localStorage.removeItem(
+            "access"
+        );
 
         window.location.href = "/";
     };
@@ -108,8 +126,6 @@ function Dashboard() {
     return (
 
         <div className="dashboard">
-
-            {/* TITLE */}
 
             <h1 className="dashboard-title">
                 ESG Emissions Dashboard
@@ -121,30 +137,42 @@ function Dashboard() {
 
                 <div className="card">
 
-                    <h2>Total Records</h2>
+                    <h2>
+                        Total Records
+                    </h2>
 
                     <p>
-                        {summary.total_records || 0}
+                        {
+                            summary.total_records || 0
+                        }
                     </p>
 
                 </div>
 
                 <div className="card">
 
-                    <h2>Suspicious Records</h2>
+                    <h2>
+                        Suspicious Records
+                    </h2>
 
                     <p>
-                        {summary.suspicious_records || 0}
+                        {
+                            summary.suspicious_records || 0
+                        }
                     </p>
 
                 </div>
 
                 <div className="card">
 
-                    <h2>Total Emissions</h2>
+                    <h2>
+                        Total Emissions
+                    </h2>
 
                     <p>
-                        {summary.total_emissions || 0}
+                        {
+                            summary.total_emissions || 0
+                        }
                     </p>
 
                 </div>
@@ -162,7 +190,9 @@ function Dashboard() {
                 <input
                     type="file"
                     onChange={(e) =>
-                        setFile(e.target.files[0])
+                        setFile(
+                            e.target.files[0]
+                        )
                     }
                 />
 
@@ -178,7 +208,7 @@ function Dashboard() {
 
             </div>
 
-            {/* ACTION BUTTONS */}
+            {/* BUTTONS */}
 
             <div
                 style={{
@@ -204,7 +234,7 @@ function Dashboard() {
 
             </div>
 
-            {/* LATEST RECORDS */}
+            {/* RECORD TABLE */}
 
             <div
                 style={{
@@ -216,66 +246,29 @@ function Dashboard() {
                     Latest Emission Records
                 </h2>
 
-                <table
-                    style={{
-                        width: "100%",
-                        borderCollapse: "collapse",
-                        background: "#1e293b",
-                        color: "white"
-                    }}
-                >
+                <table>
 
                     <thead>
 
                         <tr>
 
-                            <th
-                                style={{
-                                    padding: "15px",
-                                    borderBottom:
-                                        "1px solid gray"
-                                }}
-                            >
+                            <th>
                                 Activity
                             </th>
 
-                            <th
-                                style={{
-                                    padding: "15px",
-                                    borderBottom:
-                                        "1px solid gray"
-                                }}
-                            >
+                            <th>
                                 Value
                             </th>
 
-                            <th
-                                style={{
-                                    padding: "15px",
-                                    borderBottom:
-                                        "1px solid gray"
-                                }}
-                            >
+                            <th>
                                 Unit
                             </th>
 
-                            <th
-                                style={{
-                                    padding: "15px",
-                                    borderBottom:
-                                        "1px solid gray"
-                                }}
-                            >
+                            <th>
                                 Emission
                             </th>
 
-                            <th
-                                style={{
-                                    padding: "15px",
-                                    borderBottom:
-                                        "1px solid gray"
-                                }}
-                            >
+                            <th>
                                 Status
                             </th>
 
@@ -288,58 +281,54 @@ function Dashboard() {
                         {
                             summary.latest_records &&
                             summary.latest_records.map(
-                                (record, index) => (
+                                (
+                                    record,
+                                    index
+                                ) => (
 
                                 <tr
                                     key={index}
                                 >
 
-                                    <td
-                                        style={{
-                                            padding: "15px"
-                                        }}
-                                    >
-                                        {record.activity_type}
+                                    <td>
+                                        {
+                                            record.activity_type
+                                        }
+                                    </td>
+
+                                    <td>
+                                        {
+                                            record.value
+                                        }
+                                    </td>
+
+                                    <td>
+                                        {
+                                            record.unit
+                                        }
+                                    </td>
+
+                                    <td>
+                                        {
+                                            record.emission
+                                        }
                                     </td>
 
                                     <td
                                         style={{
-                                            padding: "15px"
-                                        }}
-                                    >
-                                        {record.value}
-                                    </td>
-
-                                    <td
-                                        style={{
-                                            padding: "15px"
-                                        }}
-                                    >
-                                        {record.unit}
-                                    </td>
-
-                                    <td
-                                        style={{
-                                            padding: "15px"
-                                        }}
-                                    >
-                                        {record.emission}
-                                    </td>
-
-                                    <td
-                                        style={{
-                                            padding: "15px",
                                             color:
                                                 record.suspicious
                                                 ? "red"
                                                 : "lightgreen"
                                         }}
                                     >
+
                                         {
                                             record.suspicious
                                             ? "Suspicious"
                                             : "Normal"
                                         }
+
                                     </td>
 
                                 </tr>
