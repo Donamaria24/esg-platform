@@ -1,0 +1,4 @@
+material_code,plant_code,fuel_type,quantity,unit,posting_date
+DSL001,PLT_DE01,Diesel,1200,liters,2026-05-20
+DSL002,PLT_US01,Diesel,300,gallons,2026-05-21
+DSL003,PLT_IN01,Petrol,15000,liters,2026-05-22

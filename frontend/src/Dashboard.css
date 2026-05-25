@@ -1,0 +1,126 @@
+body {
+    margin: 0;
+    background-color: #0f172a;
+    font-family: Arial, sans-serif;
+}
+
+/* MAIN DASHBOARD */
+
+.dashboard {
+    padding: 40px;
+    color: white;
+}
+
+/* TITLE */
+
+.dashboard-title {
+    font-size: 42px;
+    margin-bottom: 40px;
+}
+
+/* KPI CARDS */
+
+.cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: #1e293b;
+    padding: 25px;
+    border-radius: 14px;
+    width: 250px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.4);
+}
+
+.card h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.card p {
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #38bdf8;
+}
+
+/* UPLOAD BOX */
+
+.upload-box {
+    background: #1e293b;
+    padding: 25px;
+    border-radius: 14px;
+    width: 400px;
+    margin-top: 40px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.4);
+}
+
+/* BUTTONS */
+
+.download-btn {
+    background-color: #38bdf8;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    color: black;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.download-btn:hover {
+    background-color: #0ea5e9;
+}
+
+/* SECTION TITLE */
+
+.section-title {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+/* TABLE */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #1e293b;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+th {
+    background: #334155;
+    padding: 16px;
+    text-align: left;
+}
+
+td {
+    padding: 16px;
+    border-bottom: 1px solid #334155;
+}
+
+tr:hover {
+    background-color: #273549;
+}
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 768px) {
+
+    .cards {
+        flex-direction: column;
+    }
+
+    .upload-box {
+        width: 100%;
+    }
+
+    table {
+        font-size: 14px;
+    }
+}
